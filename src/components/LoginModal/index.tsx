@@ -16,25 +16,19 @@ export function LoginModal({
   isOpen,
   onRequestClose
 }: LoginModalProps) {
-  const { createUser } = useUsers();
+  const { login } = useUsers();
 
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleCreateNewTransaction(event: FormEvent) {
+  async function handleLogin(event: FormEvent) {
     event.preventDefault();
 
-    await createUser({
-      name,
-      surname,
+    await login({
       email,
       password
     });
 
-    setName('');
-    setSurname('');
     setEmail('');
     setPassword('');
     
@@ -56,7 +50,7 @@ export function LoginModal({
         <img src={closeImg} alt="Fechar modal" />
       </button>
 
-      <Container onSubmit={handleCreateNewTransaction}>
+      <Container onSubmit={handleLogin}>
         <h2>Fazer login</h2>
 
         <input

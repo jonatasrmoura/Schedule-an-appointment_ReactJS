@@ -10,7 +10,13 @@ interface User {
   isAdmin: boolean;
 }
 
+interface UserLogged {
+  token: string;
+  user: User;
+}
+
 type UsersInput = Omit<User, 'id' | 'isAdmin'>;
+type UsersLoginInput = Omit<User, 'id' | 'isAdmin' | 'name' | 'surname'>;
 
 interface UsersProviderProps {
   children: ReactNode;
@@ -19,6 +25,7 @@ interface UsersProviderProps {
 interface useUsersContext {
   users: User[];
   createUser: (create: UsersInput) => Promise<void>;
+  login: (login: UsersLoginInput) => Promise<UserLogged>;
 }
 
 const UsersContext = createContext<useUsersContext>(
@@ -46,7 +53,20 @@ export function SchedulesProvider({ children }: UsersProviderProps) {
     ]);
   }
 
-  const value = useMemo(() => ({ users, createUser }), [users]);
+  async function login(userLoginInput: UsersLoginInput) {
+    const response = await api.post('/users/authenticate', {
+      ...userLoginInput
+    });
+
+    const { token, user } = response.data as UserLogged;
+
+    return {
+      token,
+      user
+    };
+  }
+
+  const value = useMemo(() => ({ users, createUser, login }), [users]);
 
   return (
     <UsersContext.Provider value={value}>

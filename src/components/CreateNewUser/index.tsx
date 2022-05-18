@@ -23,7 +23,7 @@ export function LoginModal({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleCreateNewTransaction(event: FormEvent) {
+  async function handleCreateNewUser(event: FormEvent) {
     event.preventDefault();
 
     await createUser({
@@ -56,7 +56,7 @@ export function LoginModal({
         <img src={closeImg} alt="Fechar modal" />
       </button>
 
-      <Container onSubmit={handleCreateNewTransaction}>
+      <Container onSubmit={handleCreateNewUser}>
         <h2>Cadastrar usuário</h2>
         
         <input
