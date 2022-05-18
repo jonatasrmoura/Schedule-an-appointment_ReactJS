@@ -41,7 +41,7 @@ export function SchedulesProvider({ children }: UsersProviderProps) {
   }, []);
 
   async function createUser(userInput: UsersInput) {
-    const response = await api.post('/users', {
+    const response = await api.post('users', {
       ...userInput,
     });
 
@@ -70,7 +70,7 @@ export function SchedulesProvider({ children }: UsersProviderProps) {
 
   return (
     <UsersContext.Provider value={value}>
-      {children}
+      { children }
     </UsersContext.Provider>
   );
 }

@@ -6,6 +6,7 @@ import { SchedulesProvider } from './hooks/useSchedulesContext';
 import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
 import { NewScheduleModal } from "./components/NewScheduleModal";
+import { CreateNewUser } from './components/CreateNewUser';
 // import { AppRoutes } from "./routes";
 
 import { GlobalStyle } from './styles/global';
@@ -20,6 +21,9 @@ function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(
     false
   );
+  const [isNewUserModalOpen, setIsNewUserModalOpen] = useState<boolean>(
+    false
+  );
 
   function handleOpenNewScheduleModal() {
     setIsNewScheduleModalOpen(true);
@@ -27,6 +31,10 @@ function App() {
 
   function handleOpenLoginModal() {
     setIsLoginModalOpen(true);
+  }
+
+  function handleOpenNewUserModal() {
+    setIsNewUserModalOpen(true);
   }
 
   function handleCloseNewScheduleModal() {
@@ -37,6 +45,10 @@ function App() {
     setIsLoginModalOpen(false);
   }
 
+  function handleCloseNewUserModal() {
+    setIsNewUserModalOpen(false);
+  }
+
   return (
     <SchedulesProvider>
       <Header
@@ -45,12 +57,17 @@ function App() {
       />
       <Dashboard />
       <LoginModal
+        onOpenNewUserModal={handleOpenNewUserModal}
         isOpen={isLoginModalOpen}
         onRequestClose={handleCloseLoginModal}
       />
       <NewScheduleModal
         isOpen={isNewScheduleModalOpen}
         onRequestClose={handleCloseNewScheduleModal}
+      />
+      <CreateNewUser
+       isOpen={isNewUserModalOpen}
+       onRequestClose={handleCloseNewUserModal}
       />
       <GlobalStyle />
     </SchedulesProvider>

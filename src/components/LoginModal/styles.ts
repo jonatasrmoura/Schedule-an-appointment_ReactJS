@@ -1,11 +1,32 @@
 import styled from'styled-components';
-import { darken, transparentize } from 'polished';
 
 export const Container = styled.form`
-  h2 {
-    color: var(--text-title);
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+
+    h2 {
+      color: var(--text-title);
+      font-size: 1.5rem;
+    }
+
+    button[type="button"] {
+      font-size: 1rem;
+      color: #FFF;
+      background: var(--blue-light);
+      border: 0;
+      padding: 0 2rem;
+      border-radius: 0.25rem;
+      height: 3rem;
+
+      transition: filter .3s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
   }
 
   input {

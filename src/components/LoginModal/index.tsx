@@ -10,11 +10,16 @@ import { Container } from './styles';
 interface LoginModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
+  onOpenNewUserModal: () => void;
 }
+
+Modal.setAppElement('#root');
+
 
 export function LoginModal({
   isOpen,
-  onRequestClose
+  onRequestClose,
+  onOpenNewUserModal
 }: LoginModalProps) {
   const { login } = useUsers();
 
@@ -35,6 +40,18 @@ export function LoginModal({
     onRequestClose();
   };
 
+  const [isNewUserModalOpen, setIsNewUserModalOpen] = useState<boolean>(
+    false
+  );
+
+  function handleOpenNewUserModal() {
+    setIsNewUserModalOpen(true);
+  }
+
+  function handleCloseNewUserModal() {
+    setIsNewUserModalOpen(false);
+  }
+
   return (
     <Modal 
       isOpen={isOpen}
@@ -51,9 +68,18 @@ export function LoginModal({
       </button>
 
       <Container onSubmit={handleLogin}>
-        <h2>Fazer login</h2>
+        <div>
+          <h2>Fazer login</h2>
+          <button
+            type='button'
+            onClick={onOpenNewUserModal}
+          >
+            Criar conta
+          </button>
+        </div>
 
         <input
+          type='email'
           placeholder='E-mail'
           value={email}
           onChange={event => setEmail(event.target.value)}
