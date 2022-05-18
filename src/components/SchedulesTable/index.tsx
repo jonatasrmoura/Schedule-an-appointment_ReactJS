@@ -7,6 +7,7 @@ export function SchedulesTable() {
 
   return (
     <Container>
+      <h1>Lista de consultas</h1>
       <table>
         <thead>
           <tr>
@@ -20,7 +21,12 @@ export function SchedulesTable() {
           {
             schedules.map((schedule) => (
               <tr key={schedule.id}>
-                <td>{schedule.date}</td>
+                <td>
+                  {
+                    new Intl.DateTimeFormat('pt-BR').format(
+                    new Date(schedule.date)
+                  )}
+                </td>
                 <td>{schedule.time}</td>
                 <td>{schedule.tel}</td>
                 <td>{schedule.status}</td>

@@ -4,9 +4,13 @@ import { Container, Content } from "./styles";
 
 interface IHeaderProps {
   onOpenNewScheduleModal: () => void;
+  onOpenNewLoginModal: () => void;
 }
 
-export function Header({ onOpenNewScheduleModal }: IHeaderProps) {
+export function Header({
+  onOpenNewScheduleModal,
+  onOpenNewLoginModal
+}: IHeaderProps) {
   return (
     <Container>
       <Content>
@@ -14,9 +18,14 @@ export function Header({ onOpenNewScheduleModal }: IHeaderProps) {
           <AiTwotoneStar />
           Schedule an appointment
         </h1>
-        <button type="button" onClick={onOpenNewScheduleModal}>
-          Nova consulta
-        </button>
+        <div>
+          <button type="button" onClick={onOpenNewLoginModal}>
+            Login
+          </button>
+          <button type="button" onClick={onOpenNewScheduleModal}>
+            Nova consulta
+          </button>
+        </div>
       </Content>
     </Container>
   );

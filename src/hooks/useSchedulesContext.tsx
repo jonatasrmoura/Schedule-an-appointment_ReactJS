@@ -6,7 +6,7 @@ interface Schedule {
   date: string;
   time: string;
   tel: string;
-  status: boolean;
+  status: string;
   description: string;
 }
 
@@ -30,18 +30,18 @@ export function SchedulesProvider({ children }: SchedulesProviderProps) {
 
   useEffect(() => {
     api.get('schedules')
-    .then(response => setSchedules(response.data.schedules));
+    .then(response => setSchedules(response.data));
   }, []);
 
   async function createSchedule(transactionInput: SchedulesInput) {
-    const response = await api.post('/schedules', {
+    const response = await api.post('/schedules/128e56af-0a50-4f07-a509-d00aef9b5602', {
       ...transactionInput,
     });
 
-    const { schedules } = response.data;
+    const { data } = response;
 
     setSchedules([
-      ...schedules,
+      ...data,
       schedules,
     ]);
   }

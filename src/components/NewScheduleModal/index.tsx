@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
+import InputMask from 'react-input-mask';
 
 import { useSchedules } from '../../hooks/useSchedulesContext';
 
@@ -57,30 +58,37 @@ export function NewScheduleModal({
       </button>
 
       <Container onSubmit={handleCreateNewTransaction}>
-        <h2>Cadastrar transação</h2>
+        <h2>Cadastrar consulta</h2>
         
         <input
+          type='date'
           placeholder='Dia'
           value={date}
           onChange={event => setDate(event.target.value)}
+          required
         />
 
-        <input
+        <InputMask
+          mask='99:99'
           placeholder='Horário'
           value={time}
           onChange={event => setTime(event.target.value)}
+          required
         />
 
-        <input
+        <InputMask
+          mask={'(99) 99999-9999'}
           placeholder='Telefone'
           value={tel}
           onChange={event => setTel(event.target.value)}
+          required
         />
 
         <input
           placeholder='Motivo'
           value={description}
           onChange={event => setDescription(event.target.value)}
+          required
         />
 
         <button type="submit">

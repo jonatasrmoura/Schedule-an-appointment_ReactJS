@@ -27,6 +27,11 @@ export const Content = styled.div`
     }
   }
 
+  div {
+    display: flex;
+    gap: 7px;
+  }
+
   button {
     font-size: 1rem;
     color: #FFF;
