@@ -75,7 +75,7 @@ export function LoginModal({
         />
 
         <button type="submit">
-          Cadastrar
+          Login
         </button>
       </Container>
     </Modal>
