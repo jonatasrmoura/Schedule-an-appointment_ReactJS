@@ -11,8 +11,10 @@ export function SchedulesTable() {
       <table>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Contanto</th>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Telefone</th>
+            <th>Status</th>
             <th>Motivo</th>
           </tr>
         </thead>
