@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
 import { api } from '../services/api';
 
 interface User {
@@ -32,12 +33,12 @@ const UsersContext = createContext<useUsersContext>(
   {} as useUsersContext
 );
 
-export function SchedulesProvider({ children }: UsersProviderProps) {
+export function UsersProvider({ children }: UsersProviderProps) {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     api.get('users')
-    .then(response => setUsers(response.data));
+    .then(response => setUsers(response.data.users));
   }, []);
 
   async function createUser(userInput: UsersInput) {
@@ -45,11 +46,17 @@ export function SchedulesProvider({ children }: UsersProviderProps) {
       ...userInput,
     });
 
-    const { data } = response;
+    const { user } = response.data;
+
+    if (user) {
+      toast.success('Usuário cadastrado com sucesso!');
+    } else {
+      toast.error('Usuário não cadastrado!');
+    }
 
     setUsers([
-      ...data,
-      users,
+      user,
+      ...users,
     ]);
   }
 

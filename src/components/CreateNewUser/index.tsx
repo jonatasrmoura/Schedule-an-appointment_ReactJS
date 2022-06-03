@@ -40,6 +40,8 @@ export function CreateNewUser({
         password
       });
 
+      toast.success('Usuário cadastrado com sucesso!');
+
       setName('');
       setSurname('');
       setEmail('');
@@ -47,10 +49,8 @@ export function CreateNewUser({
       setConfirmPassword('');
       
       onRequestClose();
-
-      toast('Usuário cadastrado com sucesso!');
     } catch {
-      toast('Usuário não cadastrado!');
+      toast.error('Usuário não cadastrado!');
     }
   };
 

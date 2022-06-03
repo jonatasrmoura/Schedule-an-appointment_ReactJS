@@ -11,6 +11,7 @@ import { CreateNewUser } from './components/CreateNewUser';
 
 import { GlobalStyle } from './styles/global';
 import { LoginModal } from "./components/LoginModal";
+import { UsersProvider } from "./hooks/useUsersContext";
 
 Modal.setAppElement('#root');
 
@@ -50,27 +51,29 @@ function App() {
   }
 
   return (
-    <SchedulesProvider>
-      <Header
-        onOpenNewScheduleModal={handleOpenNewScheduleModal}
-        onOpenNewLoginModal={handleOpenLoginModal}
-      />
-      <Dashboard />
-      <LoginModal
-        onOpenNewUserModal={handleOpenNewUserModal}
-        isOpen={isLoginModalOpen}
-        onRequestClose={handleCloseLoginModal}
-      />
-      <NewScheduleModal
-        isOpen={isNewScheduleModalOpen}
-        onRequestClose={handleCloseNewScheduleModal}
-      />
-      <CreateNewUser
-       isOpen={isNewUserModalOpen}
-       onRequestClose={handleCloseNewUserModal}
-      />
-      <GlobalStyle />
-    </SchedulesProvider>
+    <UsersProvider>
+      <SchedulesProvider>
+        <Header
+          onOpenNewScheduleModal={handleOpenNewScheduleModal}
+          onOpenNewLoginModal={handleOpenLoginModal}
+        />
+        <Dashboard />
+        <LoginModal
+          onOpenNewUserModal={handleOpenNewUserModal}
+          isOpen={isLoginModalOpen}
+          onRequestClose={handleCloseLoginModal}
+        />
+        <NewScheduleModal
+          isOpen={isNewScheduleModalOpen}
+          onRequestClose={handleCloseNewScheduleModal}
+        />
+        <CreateNewUser
+        isOpen={isNewUserModalOpen}
+        onRequestClose={handleCloseNewUserModal}
+        />
+        <GlobalStyle />
+      </SchedulesProvider>
+    </UsersProvider>
   );
 }
 
